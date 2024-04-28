@@ -15,12 +15,12 @@ def start(message):
     bot.send_message(message.chat.id, 'Выбери, действие', reply_markup=markup)
 @bot.message_handler(content_types='text')
 def main(message):
-    if message == 'Добавить':
+    if message.text == 'Добавить':
         bot.send_message(message.chat.id, 'Напишите дату, время, событие')
 
 @bot.message_handler(content_types='text')
 def add_e(message):
-    date, time, event = message.split
+    date, time, event = message.text.split
     db.add_event(message.chat.id, date, time, event)
 
 bot.infinity_polling()
