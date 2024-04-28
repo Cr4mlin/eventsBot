@@ -1,4 +1,5 @@
 import telebot
+import db
 from telebot import types
 
 token = '6735334749:AAEgtyEKVTYdJEBxsIR8KXXnbRGuHEYZ2wQ'
@@ -12,5 +13,14 @@ def start(message):
     item3 = types.KeyboardButton('Посмотреть')
     markup.add(item1, item2, item3)
     bot.send_message(message.chat.id, 'Выбери, действие', reply_markup=markup)
+@bot.message_handler(content_types='text')
+def main(message):
+    if message == 'Добавить':
+        bot.send_message(message.chat.id, 'Напишите дату, время, событие')
+
+@bot.message_handler(content_types='text')
+def add_e(message):
+    date, time, event = message.split
+    db.add_event(message.chat.id, date, time, event)
 
 bot.infinity_polling()
