@@ -18,7 +18,7 @@ def del_event(userid, e, d, t):
     df.to_csv('events.csv', index=False)
 
 
-def view_event(userid):
+def events_list(userid):
     with open('events.csv', 'r', newline='\n', encoding='utf-8') as f:
         reader = csv.DictReader(f)
         a = []
