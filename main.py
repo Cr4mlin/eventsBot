@@ -28,8 +28,7 @@ def add(message):
     if match:
         bot.send_message(message.chat.id, 'Сделано!')
         spisok = str(message.text).split()
-        print(spisok[2])
-        db.add_event(us, spisok[0], spisok[1], spisok[2])
+        db.add_event(us, spisok[0], spisok[1], ' '.join(spisok[2::]))
     else:
         bot.send_message(message.chat.id,
                          'Формат ввода неправильный, попробуйте написать так - 1.05.2024 7:30 пробуждение')
