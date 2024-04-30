@@ -36,20 +36,20 @@ def add(message):
 
 
 def delete_list_view(b, j=0):
-    delete_list = types.InlineKeyboardMarkup(row_width=1)
+    delete_list = types.InlineKeyboardMarkup(row_width=2)
     for i in range(max_length - 1 if len(b) > max_length else len(b)):
         k = i + (max_length - 1) * j
         print(k)
         a = b[k]['date'], b[k]['time'], b[k]['event']
         delete_list.add(types.InlineKeyboardButton(' -- '.join(a), callback_data=' '.join(a)))
-    if c > 0:
-        next_button = types.InlineKeyboardButton('->', callback_data='next')
+    if c > 0 and len(b) - max_length * j > max_length:
+        next_button = types.InlineKeyboardButton('➡', callback_data='next')
         delete_list.add(next_button)
-        bot.edit_message_text(chat_id=ci, message_id=mi,
-                              text='Список ваших событий:\n', reply_markup=delete_list)
-    else:
-        bot.edit_message_text(chat_id=ci, message_id=mi,
-                              text='Список ваших событий:\n', reply_markup=delete_list)
+    if j != 0:
+        back_button = types.InlineKeyboardButton('⬅', callback_data='back')
+        delete_list.add(back_button)
+    bot.edit_message_text(chat_id=ci, message_id=mi,
+                          text='Список ваших событий:\n', reply_markup=delete_list)
 
 
 @bot.callback_query_handler(func=lambda call: True)
@@ -92,6 +92,12 @@ def callback(call):
             b = db.events_list(us)
             b = sorted(b, key=lambda x: datetime.strptime(x['date'] + ' ' + x['time'], '%d.%m.%Y %H:%M'))
             list_count += 1
+            delete_list_view(b, list_count)
+
+        elif call.data == 'back':
+            b = db.events_list(us)
+            b = sorted(b, key=lambda x: datetime.strptime(x['date'] + ' ' + x['time'], '%d.%m.%Y %H:%M'))
+            list_count -= 1
             delete_list_view(b, list_count)
 
         elif 'yes' in call.data:
