@@ -25,10 +25,10 @@ def text(message):
 def add(message):
     match = date_time_pattern.match(message.text)
     if match:
-        msg = bot.send_message(message.chat.id, 'Сделано!')
+        bot.send_message(message.chat.id, 'Сделано!')
         spisok = str(message.text).split()
         db.add_event(us, spisok[0], spisok[1], ' '.join(spisok[2::]))
-        bot.register_next_step_handler(msg, text(message))
+        text(message)
     else:
         bot.send_message(message.chat.id,
                          'Формат ввода неправильный, попробуйте написать так - 01.05.2024 7:30 пробуждение')
@@ -116,11 +116,11 @@ def callback(call):
             d = h[0]
             db.del_event(us, e, d, t)
             msg = bot.edit_message_text(chat_id=ci, message_id=mi, text='Сделано!')
-            bot.register_next_step_handler(msg, text(call.message))
+            bot.register_next_step_handler(msg, text)
 
         elif call.data == 'no':
             msg = bot.edit_message_text(chat_id=ci, message_id=mi, text='Хорошо')
-            bot.register_next_step_handler(msg, text(call.message))
+            bot.register_next_step_handler(msg, text)
 
         elif call.data == 'main_menu':
             bot.delete_message(chat_id=ci, message_id=mi)
@@ -137,4 +137,4 @@ def callback(call):
                                   text=f'Вы точно хотите удалить событие:\n {h}?', reply_markup=choice)
 
 
-bot.polling()
+bot.infinity_polling()
