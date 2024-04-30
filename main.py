@@ -37,8 +37,9 @@ def add(message):
 
 def delete_list_view(b, j=0):
     delete_list = types.InlineKeyboardMarkup(row_width=1)
-    for i in range(1b , max_length if len(b) > max_length else len(b)):
-        k = i + max_length * j - 1
+    for i in range(max_length - 1 if len(b) > max_length else len(b)):
+        k = i + (max_length - 1) * j
+        print(k)
         a = b[k]['date'], b[k]['time'], b[k]['event']
         delete_list.add(types.InlineKeyboardButton(' -- '.join(a), callback_data=' '.join(a)))
     if c > 0:
