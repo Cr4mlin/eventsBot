@@ -11,7 +11,10 @@ def add_event(userid, date, time, event):
 
 def del_event(userid, e, d, t):
     df = pd.read_csv('events.csv')
-    df = df.drop(index=(userid, d, t, e))
+    df = df.drop(df[(df['userid'] == userid) &
+                    (df['date'] == d) &
+                    (df['time'] == t) &
+                    (df['event'] == e)].index)
     df.to_csv('events.csv', index=False)
 
 
