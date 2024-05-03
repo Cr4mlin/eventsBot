@@ -4,7 +4,7 @@ from telebot import types
 import re
 from datetime import datetime
 
-token = '6735334749:AAEgtyEKVTYdJEBxsIR8KXXnbRGuHEYZ2wQ'
+token = ''
 bot = telebot.TeleBot(token)
 
 # Регулярное выражение для проверки формата даты и времени
@@ -12,14 +12,23 @@ date_time_pattern = re.compile(r'^(\d{2}\.\d{2}\.\d{4} \d{2}:\d{2}) (.*)$')
 
 max_length = 4
 
+
 @bot.message_handler(content_types=['text'])
-def text(message):
-    markup = types.InlineKeyboardMarkup(row_width=3)
-    item1 = types.InlineKeyboardButton('Добавить', callback_data='add')
-    item2 = types.InlineKeyboardButton('Удалить', callback_data='del')
-    item3 = types.InlineKeyboardButton('Посмотреть', callback_data='view')
-    markup.add(item1, item2, item3)
-    bot.send_message(message.chat.id, 'Выбери, действие', reply_markup=markup)
+def text(message, flag=False):
+    if flag:
+        markup = types.InlineKeyboardMarkup(row_width=3)
+        item1 = types.InlineKeyboardButton('Добавить', callback_data='add')
+        item2 = types.InlineKeyboardButton('Удалить', callback_data='del')
+        item3 = types.InlineKeyboardButton('Посмотреть', callback_data='view')
+        markup.add(item1, item2, item3)
+        bot.edit_message_text(chat_id=ci, message_id=mi, text='Выбери, действие', reply_markup=markup)
+    else:
+        markup = types.InlineKeyboardMarkup(row_width=3)
+        item1 = types.InlineKeyboardButton('Добавить', callback_data='add')
+        item2 = types.InlineKeyboardButton('Удалить', callback_data='del')
+        item3 = types.InlineKeyboardButton('Посмотреть', callback_data='view')
+        markup.add(item1, item2, item3)
+        bot.send_message(message.chat.id, 'Выбери, действие', reply_markup=markup)
 
 
 def add(message):
@@ -123,8 +132,7 @@ def callback(call):
             bot.register_next_step_handler(msg, text)
 
         elif call.data == 'main_menu':
-            bot.delete_message(chat_id=ci, message_id=mi)
-            text(call.message)
+            text(call.message, True)
 
         else:
             a = str(call.data).split()
