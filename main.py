@@ -3,8 +3,9 @@ import db
 from telebot import types
 import re
 from datetime import datetime
+from token import bot_token
 
-token = ''
+token = bot_token
 bot = telebot.TeleBot(token)
 
 # Регулярное выражение для проверки формата даты и времени
