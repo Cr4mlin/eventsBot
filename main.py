@@ -18,7 +18,7 @@ max_length = 4
 def text(message, flag=False):
     if flag:
         markup = types.InlineKeyboardMarkup(row_width=3)
-        item1 = types.InlineKeyboardButton('Добавить', callback_data='add')
+        item1 = types.InlineKeyboardButton('Добавит', callback_data='add')
         item2 = types.InlineKeyboardButton('Удалить', callback_data='del')
         item3 = types.InlineKeyboardButton('Посмотреть', callback_data='view')
         markup.add(item1, item2, item3)
