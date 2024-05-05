@@ -15,6 +15,7 @@ date_time_pattern = re.compile(r'^(\d{2}\.\d{2}\.\d{4} \d{2}:\d{2}) (.*)$')
 max_length = 4
 
 scheduler = BackgroundScheduler()
+scheduler.configure(timezone='UTC')
 scheduler.start()
 
 
@@ -28,6 +29,12 @@ def send_message_to_user(username, message):
 
 
 def check_and_send_messages(userid, date, time, event):
+    time = time.split(':')
+    if int(time[0]) >= 7:
+        a = int(time[0]) - 7
+    else:
+        a = int(time[0]) + 24 - 7
+    time = str(a) + ':' + time[1]
     event_datetime = datetime.strptime(f"{date} {time}", "%d.%m.%Y %H:%M")
     scheduler.add_job(send_message_to_user, 'date', run_date=event_datetime, args=(userid, event))
 

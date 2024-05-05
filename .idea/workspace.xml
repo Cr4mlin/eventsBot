@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bb7a0c9d-0bf0-433f-aca8-63a5b9caf3b9" name="Changes" comment="багфикс" />
+    <list default="true" id="bb7a0c9d-0bf0-433f-aca8-63a5b9caf3b9" name="Changes" comment="доработка">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/events.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/events.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -167,7 +171,14 @@
       <option name="project" value="LOCAL" />
       <updated>1714906637461</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="доработка">
+      <created>1714906864740</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1714906864740</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -194,6 +205,7 @@
     <MESSAGE value="." />
     <MESSAGE value="отправка" />
     <MESSAGE value="багфикс" />
-    <option name="LAST_COMMIT_MESSAGE" value="багфикс" />
+    <MESSAGE value="доработка" />
+    <option name="LAST_COMMIT_MESSAGE" value="доработка" />
   </component>
 </project>
