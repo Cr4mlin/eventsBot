@@ -2,16 +2,34 @@ import telebot
 import db
 from telebot import types
 import re
-from datetime import datetime
-from token import bot_token
+from datetime import datetime, timedelta
+from bot_token import bot_token
+from apscheduler.schedulers.background import BackgroundScheduler
 
-token = bot_token
-bot = telebot.TeleBot(token)
+
+bot = telebot.TeleBot(bot_token)
 
 # Регулярное выражение для проверки формата даты и времени
 date_time_pattern = re.compile(r'^(\d{2}\.\d{2}\.\d{4} \d{2}:\d{2}) (.*)$')
 
 max_length = 4
+
+scheduler = BackgroundScheduler()
+scheduler.start()
+
+
+def send_message_to_user(username, message):
+    try:
+        user = bot.get_chat(username)
+        bot.send_message(user.id, message)
+        print(f"Сообщение отправлено пользователю {username}")
+    except Exception as e:
+        print(f"Ошибка отправки сообщения пользователю {username}: {e}")
+
+
+def check_and_send_messages(userid, date, time, event):
+    event_datetime = datetime.strptime(f"{date} {time}", "%d.%m.%Y %H:%M")
+    scheduler.add_job(send_message_to_user, 'date', run_date=event_datetime, args=(userid, event))
 
 
 @bot.message_handler(content_types=['text'])
@@ -35,9 +53,16 @@ def text(message, flag=False):
 def add(message):
     match = date_time_pattern.match(message.text)
     if match:
-        bot.send_message(message.chat.id, 'Сделано!')
         spisok = str(message.text).split()
+        event_datetime = datetime.strptime(f"{spisok[0]} {spisok[1]}", "%d.%m.%Y %H:%M")
+        events = db.events_list(us)
+        for event in events:
+            if event['event'] == ' '.join(spisok[2::]) and datetime.strptime(f"{event['date']} {event['time']}", "%d.%m.%Y %H:%M") == event_datetime:
+                bot.send_message(message.chat.id, "Такое событие уже существует!")
+                return
         db.add_event(us, spisok[0], spisok[1], ' '.join(spisok[2::]))
+        bot.send_message(message.chat.id, 'Сделано!')
+        check_and_send_messages(message.chat.id, spisok[0], spisok[1], ' '.join(spisok[2::]))
         text(message)
     else:
         bot.send_message(message.chat.id,
@@ -66,7 +91,7 @@ def delete_list_view(b, j=0):
 
 @bot.callback_query_handler(func=lambda call: True)
 def callback(call):
-    global ci, mi, us, c, list_count
+    global ci, mi, c, list_count, us
     us = call.message.chat.username
     ci = call.message.chat.id
     mi = call.message.id
