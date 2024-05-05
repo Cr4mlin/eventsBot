@@ -2,7 +2,7 @@ import telebot
 import db
 from telebot import types
 import re
-from datetime import datetime, timedelta
+from datetime import datetime
 from bot_token import bot_token
 from apscheduler.schedulers.background import BackgroundScheduler
 

@@ -4,13 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bb7a0c9d-0bf0-433f-aca8-63a5b9caf3b9" name="Changes" comment=".">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/events.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/events.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.py" beforeDir="false" afterPath="$PROJECT_DIR$/db.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
-    </list>
+    <list default="true" id="bb7a0c9d-0bf0-433f-aca8-63a5b9caf3b9" name="Changes" comment="багфикс" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -159,7 +153,21 @@
       <option name="project" value="LOCAL" />
       <updated>1714732383745</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="отправка">
+      <created>1714906517665</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1714906517665</updated>
+    </task>
+    <task id="LOCAL-00012" summary="багфикс">
+      <created>1714906637461</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1714906637461</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -184,6 +192,8 @@
     <MESSAGE value="кнопочки возврата сделал" />
     <MESSAGE value="пофиксил баги" />
     <MESSAGE value="." />
-    <option name="LAST_COMMIT_MESSAGE" value="." />
+    <MESSAGE value="отправка" />
+    <MESSAGE value="багфикс" />
+    <option name="LAST_COMMIT_MESSAGE" value="багфикс" />
   </component>
 </project>
