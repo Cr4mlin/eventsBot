@@ -19,5 +19,7 @@ from datetime import datetime
 from apscheduler.schedulers.background import BackgroundScheduler
 ### Автор – Максим Панков, Игорь Черненко                                      
 ### Скриншоты бота ниже
+![2024-05-07_08-13-28](https://github.com/Cr4mlin/eventsBot/assets/168114445/311c925d-9e12-4665-9065-e559a7b59c2c)
 ![2024-05-07_08-09-04](https://github.com/Cr4mlin/eventsBot/assets/168114445/0dc8a486-013c-4d79-8413-41581dffd986)
 ![2024-05-07_08-09-40](https://github.com/Cr4mlin/eventsBot/assets/168114445/52abe478-db44-43e2-8341-c23dcffbb031)
+
